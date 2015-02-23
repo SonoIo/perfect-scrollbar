@@ -26,26 +26,40 @@ function updateCss(element, i) {
     xRailOffset.left = element.scrollLeft;
   }
   if (i.isScrollbarXUsingBottom) {
-    xRailOffset.bottom = i.scrollbarXBottom - element.scrollTop;
+    if (typeof i.scrollbarXContainer !== 'object')
+      xRailOffset.bottom = i.scrollbarXBottom - element.scrollTop;
+    else
+      xRailOffset.bottom = 0;
   } else {
-    xRailOffset.top = i.scrollbarXTop + element.scrollTop;
+    if (typeof i.scrollbarXContainer !== 'object')
+      xRailOffset.top = i.scrollbarXTop + element.scrollTop;
+    else
+      xRailOffset.top = 0;
   }
+  if (typeof i.scrollbarXContainer === 'object')
+    xRailOffset.left = 0;
   d.css(i.scrollbarXRail, xRailOffset);
 
   var yRailOffset = {top: element.scrollTop, height: i.railYHeight};
   if (i.isScrollbarYUsingRight) {
-    if (i.isRtl) {
+    if (typeof i.scrollbarYContainer === 'object') {
+      yRailOffset.right = 0;
+    } else if (i.isRtl) {
       yRailOffset.right = i.contentWidth - element.scrollLeft - i.scrollbarYRight - i.scrollbarYOuterWidth;
     } else {
       yRailOffset.right = i.scrollbarYRight - element.scrollLeft;
     }
   } else {
-    if (i.isRtl) {
+    if (typeof i.scrollbarYContainer === 'object') {
+      yRailOffset.left = 0;
+    } else if (i.isRtl) {
       yRailOffset.left = element.scrollLeft + i.containerWidth * 2 - i.contentWidth - i.scrollbarYLeft - i.scrollbarYOuterWidth;
     } else {
       yRailOffset.left = i.scrollbarYLeft + element.scrollLeft;
     }
   }
+  if (typeof i.scrollbarYContainer === 'object')
+    yRailOffset.top = 0;
   d.css(i.scrollbarYRail, yRailOffset);
 
   d.css(i.scrollbarX, {left: i.scrollbarXLeft, width: i.scrollbarXWidth - i.railBorderXWidth});

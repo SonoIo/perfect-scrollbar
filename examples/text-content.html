@@ -9,8 +9,21 @@
       #description {
         border: 1px solid gray;
         height:150px;
-        width: 400px;
+        width: 150px;
         overflow: auto;
+        position: relative;
+      }
+      #description p {
+        white-space: nowrap;
+      }
+      #scrollContainerY {
+        height: 150px;
+        width: 10px;
+        position: relative;
+      }
+      #scrollContainerX {
+        width: 150px;
+        height: 10px;
         position: relative;
       }
     </style>
@@ -28,11 +41,16 @@
       <p>The command takes options applicable</p>
       <p>The command takes options applicable</p>
     </div>
+    <div id="scrollContainerY" class="ps-container ps-active-y"></div>
+    <div id="scrollContainerX" class="ps-container ps-active-x"></div>
     <button id='redraw'>Redraw</button>
     <script>
       var $ = document.querySelector.bind(document);
       window.onload = function () {
-        Ps.initialize($('#description'));
+        Ps.initialize($('#description'), {
+          containerY: $('#scrollContainerY'),
+          containerX: $('#scrollContainerX')
+        });
       };
       $('#redraw').addEventListener('click', function () {
         var oldHtml = $('#description').innerHTML;
@@ -49,7 +67,7 @@
             '<p>The command takes options applicable</p>' +
             '<p>The command takes options applicable</p>' +
             '<p>The command takes options applicable</p>';
-          Ps.update($('#description'));
+           Ps.update($('#description'));
         }, 500);
       });
     </script>

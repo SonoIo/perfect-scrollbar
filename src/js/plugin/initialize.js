@@ -23,7 +23,10 @@ module.exports = function (element, userSettings) {
   cls.add(element, 'ps-container');
 
   // Create a plugin instance.
-  var i = instances.add(element);
+  var i = instances.add(element, {
+    containerX: userSettings.containerX, 
+    containerY: userSettings.containerY
+  });
 
   i.settings = h.extend(i.settings, userSettings);
 

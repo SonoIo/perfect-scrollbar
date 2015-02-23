@@ -20,7 +20,7 @@ exports.clone = function (obj) {
   } else if (typeof obj === 'object') {
     var result = {};
     for (var key in obj) {
-      result[key] = this.clone(obj[key]);
+      result[key] = obj[key]; // this.clone(obj[key]); // Recursive
     }
     return result;
   } else {
@@ -31,7 +31,7 @@ exports.clone = function (obj) {
 exports.extend = function (original, source) {
   var result = this.clone(original);
   for (var key in source) {
-    result[key] = this.clone(source[key]);
+    result[key] = source[key]; // this.clone(source[key]);
   }
   return result;
 };

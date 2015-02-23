@@ -12,11 +12,11 @@ var d = require('../lib/dom')
 module.exports = function (element) {
   var i = instances.get(element);
 
-  if (!i.scrollbarXRail || !element.contains(i.scrollbarXRail) ||
-      !i.scrollbarYRail || !element.contains(i.scrollbarYRail)) {
+  if (!i.scrollbarXRail || (!i.scrollbarXContainer && !element.contains(i.scrollbarXRail)) ||
+      !i.scrollbarYRail || (!i.scrollbarYContainer && !element.contains(i.scrollbarYRail))) {
     // If there's something wrong in the plugin, re-initialise.
-    destroy(element);
-    initialize(element);
+    var oldI = destroy(element);
+    initialize(element, oldI.settings);
   } else {
     // Hide scrollbars not to affect scrollWidth and scrollHeight
     d.css(i.scrollbarXRail, 'display', 'none');

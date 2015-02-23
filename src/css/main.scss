@@ -5,10 +5,12 @@ $ps-bar-hover: #999;
 
 // Helper mixins
 @mixin opacity($o) {
+  /*
   $IEValue: $o * 100;
   opacity: $o;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
       filter: alpha(opacity=$IEValue);
+  */
 }
 
 @mixin border-radius($r) {

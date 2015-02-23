@@ -18,4 +18,6 @@ module.exports = function (element) {
   h.removePsClasses(element);
 
   instances.remove(element);
+
+  return i;
 };

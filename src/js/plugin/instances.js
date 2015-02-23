@@ -11,7 +11,7 @@ var d = require('../lib/dom')
 
 var instances = {};
 
-function Instance(element) {
+function Instance(element, options) {
   var i = this;
 
   i.settings = h.clone(defaultSettings);
@@ -24,7 +24,13 @@ function Instance(element) {
   i.event = new EventManager();
   i.ownerDocument = element.ownerDocument || document;
 
-  i.scrollbarXRail = d.appendTo(d.e('div', 'ps-scrollbar-x-rail'), element);
+  if (typeof options.containerY === 'undefined') {
+    i.scrollbarXRail = d.appendTo(d.e('div', 'ps-scrollbar-x-rail'), element);
+  } else {
+    i.scrollbarXContainer = options.containerX;
+    i.scrollbarXRail = d.appendTo(d.e('div', 'ps-scrollbar-x-rail'), i.scrollbarXContainer);
+  }
+
   i.scrollbarX = d.appendTo(d.e('div', 'ps-scrollbar-x'), i.scrollbarXRail);
   i.scrollbarXActive = null;
   i.scrollbarXWidth = null;
@@ -36,7 +42,13 @@ function Instance(element) {
   i.railXMarginWidth = h.toInt(d.css(i.scrollbarXRail, 'marginLeft')) + h.toInt(d.css(i.scrollbarXRail, 'marginRight'));
   i.railXWidth = null;
 
-  i.scrollbarYRail = d.appendTo(d.e('div', 'ps-scrollbar-y-rail'), element);
+  if (typeof options.containerY === 'undefined') {
+    i.scrollbarYRail = d.appendTo(d.e('div', 'ps-scrollbar-y-rail'), element);
+  } else {
+    i.scrollbarYContainer = options.containerY;
+    i.scrollbarYRail = d.appendTo(d.e('div', 'ps-scrollbar-y-rail'), i.scrollbarYContainer);
+  }
+
   i.scrollbarY = d.appendTo(d.e('div', 'ps-scrollbar-y'), i.scrollbarYRail);
   i.scrollbarYActive = null;
   i.scrollbarYHeight = null;
@@ -74,10 +86,11 @@ function removeId(element) {
   }
 }
 
-exports.add = function (element) {
+exports.add = function (element, options) {
+  options = typeof options === 'object' ? options : {};
   var newId = guid();
   setId(element, newId);
-  instances[newId] = new Instance(element);
+  instances[newId] = new Instance(element, options);
   return instances[newId];
 };
 
