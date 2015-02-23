@@ -250,6 +250,15 @@ The number of pixels the content width can surpass the container width without e
 The number of pixels the content height can surpass the container height without enabling the Y axis scroll bar. Allows some "wiggle room" or "offset break", so that Y axis scroll bar is not enabled just because of a few pixels.  
 **Default: 0**
 
+### containerX
+External container of the horizontal scrollbar.
+**Default: null**
+
+### containerY
+External container of the vertical scrollbar.
+**Default: null**
+
+
 ## Contribution
 
 #### Please read [Contributing](https://github.com/noraesae/perfect-scrollbar/wiki/Contributing) in the wiki before making any contribution.
