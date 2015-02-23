@@ -251,11 +251,11 @@ The number of pixels the content height can surpass the container height without
 **Default: 0**
 
 ### containerX
-External container of the horizontal scrollbar.
+HTML element that contains the horizontal scrollbar.  
 **Default: null**
 
 ### containerY
-External container of the vertical scrollbar.
+HTML element that contains the vertical scrollbar.  
 **Default: null**
 
 
