@@ -25,19 +25,23 @@ function updateCss(element, i) {
   } else {
     xRailOffset.left = element.scrollLeft;
   }
+
   if (i.isScrollbarXUsingBottom) {
-    if (typeof i.scrollbarXContainer !== 'object')
+    if (typeof i.scrollbarXContainer !== 'object') {
       xRailOffset.bottom = i.scrollbarXBottom - element.scrollTop;
-    else
+    } else {
       xRailOffset.bottom = 0;
+    }
   } else {
-    if (typeof i.scrollbarXContainer !== 'object')
+    if (typeof i.scrollbarXContainer !== 'object') {
       xRailOffset.top = i.scrollbarXTop + element.scrollTop;
-    else
+    } else {
       xRailOffset.top = 0;
+    }
   }
-  if (typeof i.scrollbarXContainer === 'object')
+  if (typeof i.scrollbarXContainer === 'object') {
     xRailOffset.left = 0;
+  }
   d.css(i.scrollbarXRail, xRailOffset);
 
   var yRailOffset = {top: element.scrollTop, height: i.railYHeight};
@@ -58,8 +62,9 @@ function updateCss(element, i) {
       yRailOffset.left = i.scrollbarYLeft + element.scrollLeft;
     }
   }
-  if (typeof i.scrollbarYContainer === 'object')
+  if (typeof i.scrollbarYContainer === 'object') {
     yRailOffset.top = 0;
+  }
   d.css(i.scrollbarYRail, yRailOffset);
 
   d.css(i.scrollbarX, {left: i.scrollbarXLeft, width: i.scrollbarXWidth - i.railBorderXWidth});

@@ -24,7 +24,7 @@ module.exports = function (element, userSettings) {
 
   // Create a plugin instance.
   var i = instances.add(element, {
-    containerX: userSettings.containerX, 
+    containerX: userSettings.containerX,
     containerY: userSettings.containerY
   });
 
