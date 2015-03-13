@@ -24,7 +24,7 @@ function Instance(element, options) {
   i.event = new EventManager();
   i.ownerDocument = element.ownerDocument || document;
 
-  if (typeof options.containerY === 'undefined') {
+  if (typeof options.containerX === 'undefined') {
     i.scrollbarXRail = d.appendTo(d.e('div', 'ps-scrollbar-x-rail'), element);
   } else {
     i.scrollbarXContainer = options.containerX;
